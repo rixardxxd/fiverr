@@ -1,20 +1,5 @@
-"""
-Django settings for fievrr project.
-
-For more information on this file, see
-https://docs.djangoproject.com/en/1.6/topics/settings/
-
-For the full list of settings and their values, see
-https://docs.djangoproject.com/en/1.6/ref/settings/
-"""
-
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '9$p_681!3-0*9c-4*qyluej1igs#cfxs#(p_arr+qerk0^jqx)'
@@ -80,10 +65,30 @@ USE_L10N = True
 USE_TZ = True
 
 
+
+LOGIN_REDIRECT_URL = '/member/'
+
+LOGIN_URL = '/login/'
+
+
+from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
+
+TEMPLATE_CONTEXT_PROCESSORS = TCP + (
+    'django.core.context_processors.request',
+)
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATIC_ROOT = 'staticfiles'
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "fievrr/static"),
+)
+TEMPLATE_DIRS = (
+    os.path.join(BASE_DIR, 'fievrr/templates/'),
+)
 
 LOGGING = {
     'version': 1,

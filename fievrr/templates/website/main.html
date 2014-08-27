@@ -1,0 +1,180 @@
+{% extends "base.html" %}
+
+{% block meta %}
+<title>数据录入</title>
+{% endblock %}
+
+{% block head %}
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}vendor/datepicker/daterangepicker-bs3.css"/>
+{% endblock %}
+
+
+{% block content %}
+<div class="container bs-docs-container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2" data-alerts="alerts" data-ids="myid" data-fade="4000"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="row report_section">
+                <!-- Button trigger modal -->
+                <div class="col-md-6 col-sm-6">
+                    <label for="part-no">Part No.</label>
+                    <input type="text" id="part-no" name="part-no" readonly='true'>
+
+                </div>
+                <div class="col-md-6 col-sm-6 text-right">
+                    <label for="date">日期</label>
+                    <input type="text" id="date" name="date" readonly='true'>
+                </div>
+            </div>
+            <div class="row dashboard_section_content">
+                <div class="col-lg-12 col-sm-12 col-md-12">
+                    <div>
+                        <p class="section_title">退货</p>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr class="header">
+                                <th>Part No</th>
+                                <th>数量</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td class="part-no-cell"></td>
+                                <td>
+                                    <input type="number" name="return-amount-input" min="1" id="return-amount-input">
+                                </td>
+                                <td>
+                                    <button class="btn btn-success btn-sm" id="return-add-button" onclick="addItem('return')" disabled>添加</button>
+                                    <button class="btn btn-info btn-sm" id="return-update-button" onclick="updateItem('return')" disabled>更新</button>
+                                    <button class="btn btn-danger btn-sm" data-type="return" id="return-delete-button" data-toggle="modal" href="#delete-confirmation-modal" disabled>删除</button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row dashboard_section_content">
+                <div class="col-lg-12 col-sm-12 col-md-12">
+                    <div>
+                        <p class="section_title">发货</p>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr class="header">
+                                <th>Part No</th>
+                                <th>数量</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td class="part-no-cell"></td>
+                                <td>
+                                    <input type="number" name="delivery-amount-input" min="1" id="delivery-amount-input">
+                                </td>
+                                <td>
+                                    <button class="btn btn-success btn-sm" id="delivery-add-button" onclick="addItem('delivery')" disabled>添加</button>
+                                    <button class="btn btn-info btn-sm" id="delivery-update-button" onclick="updateItem('delivery')" disabled>更新</button>
+                                    <button class="btn btn-danger btn-sm" data-type="delivery" id="delivery-delete-button" data-toggle="modal" href="#delete-confirmation-modal" disabled>删除</button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row dashboard_section_content">
+                <div class="col-lg-12 col-sm-12 col-md-12">
+                    <div>
+                        <p class="section_title">使用</p>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr class="header">
+                                <th>Part No</th>
+                                <th>数量</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td class="part-no-cell"></td>
+                                <td>
+                                     <input type="number" name="usage-amount-input" min="1" id="usage-amount-input">
+                                </td>
+                                <td>
+                                    <button class="btn btn-success btn-sm" id="usage-add-button" onclick="addItem('usage')" disabled>添加</button>
+                                    <button class="btn btn-info btn-sm" id="usage-update-button" onclick="updateItem('usage')" disabled>更新</button>
+                                    <button class="btn btn-danger btn-sm" data-type="usage" id="usage-delete-button" data-toggle="modal" href="#delete-confirmation-modal" disabled>删除</button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="product-modal" tabindex="-1" role="dialog" aria-labelledby="product-modalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
+                <h4 class="modal-title">货物列表</h4>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button id="save-modal" type="button" class="btn btn-primary" data-dismiss="modal">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="delete-confirmation-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
+                <h4 class="modal-title">警告</h4>
+            </div>
+            <div class="modal-body">
+                 <input class="hidden-input" value="" type="hidden">
+                 <h4 class="modal-title">确认要删除该数据吗？</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button id="delete-confirmation-button" type="button" class="btn btn-primary" data-dismiss="modal">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block javascript %}
+
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.bsAlerts.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/day.js"></script>
+
+</script>
+
+{% endblock %}
