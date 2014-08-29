@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block content %}
+
 <div class="landing-image">
     <div id="search-container">
         <h1 class="home-page-slogan">搜寻您所需要的服务</h1>
@@ -21,37 +22,29 @@
             </div>
         </div>
     </div>
-
 </div>
 
 
-<div class="middle-banner">
+<div class="middle-banner text-centered">
     <h2>热门服务精选</h2>
 </div>
 
 
 <div class="container" id="landing-container">
-    {%for list_item_row in list_items %}
-    <div class="row-fluid list-container">
-        {%for list_item in list_item_row %}
-        <div class="col-md-4">
+    {%for list_item in list_items %}
+    <div class="col-md-4">
+        <div class="container">
             <div class="card-individual">
                 <div class="card-image">
                     <div class="image-container">
-                        <a href="/detail-view/?list_item_id={{list_item.id}}"><img src="{{list_item.img.url}}"></a>
+                        <a href="/detail-view/?list_item_id={{list_item.id}}"><img src="{{list_item.img}}"></a>
                     </div>
                     <div class="info-contents">
-                        <p>{{list_item.city}},{{list_item.country}}</p>
-                    </div>
-                    <div class="price">
-                        <p><span id="price-number">${{list_item.price}}</span>&nbsp;每天</p>
-
-                        <p>{{list_item.size}} square ft</p>
+                        <p>{{list_item.name}}</p>
                     </div>
                 </div>
             </div>
         </div>
-        {% endfor %}
     </div>
     {% endfor %}
 </div>
