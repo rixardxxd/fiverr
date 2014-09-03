@@ -24,16 +24,16 @@ class EmailOrUsernameModelBackend(object):
 
 
 class Gig(models.Model):
-
+    title = models.CharField(max_length=500)
     seller = models.ForeignKey(User)
     rating_avg = models.FloatField(default=0.0)
     rating_count = models.IntegerField(default=0)
-    description = models.CharField(required=True, max_length=5000, min_length=250);
+    description = models.CharField(max_length=5000)
     category = models.ForeignKey('Category')
     sub_category = models.ForeignKey('SubCategory')
     tag = models.ManyToManyField('Tag')
     duration = models.IntegerField(default=0)
-    instruction = models.CharField(required=False, max_length=5000)
+    instruction = models.CharField(blank=True, max_length=5000)
 
     def __unicode__(self):
         return u'gig_id: {} ____ seller: {} ____ rating_avg: {} ____ rating_count: {} ____ category: {} ____ sub_category: {} ____ tag: {} ____ duration: {}'\
@@ -43,7 +43,7 @@ class Gig(models.Model):
 class Order(models.Model):
     buyer = models.ForeignKey(User)
     gig = models.ForeignKey(Gig)
-    status = models.CharField(require=True)
+    status = models.CharField(max_length=50)
     purchase_ts = models.DateTimeField(auto_now_add=True)
     close_ts = models.DateTimeField();
 
@@ -63,7 +63,7 @@ class Payment(models.Model):
 
 class Message(models.Model):
     order = models.ForeignKey('Order')
-    message_content = models.CharField(required=True, max_length=5000);
+    message_content = models.CharField(max_length=5000);
 
     def __unicode__(self):
         return u'message_id: {} ____ order: {} ____ message_content: {}'\
@@ -73,7 +73,7 @@ class Message(models.Model):
 class Rating(models.Model):
     order = models.OneToOneField('Order')
     rating = models.IntegerField(default=0)
-    comment = models.CharField(required=False, max_length=5000);
+    comment = models.CharField(blank=True, max_length=5000);
     rating_ts = models.DateTimeField(auto_now_add=True);
 
     def __unicode__(self):
@@ -82,7 +82,7 @@ class Rating(models.Model):
 
 
 class Tag(models.Model):
-    tag_content = models.CharField(required=True, max_length=100)
+    tag_content = models.CharField(max_length=100)
 
     def __unicode__(self):
         return u'tag_id: {} ____ tag_content: {}'\
@@ -90,7 +90,7 @@ class Tag(models.Model):
 
 
 class Category(models.Model):
-    category_name = models.CharField(required=True, max_length=100)
+    category_name = models.CharField(max_length=100)
 
     def __unicode__(self):
         return u'category_id: {} ____ category_name: {}'\
@@ -98,7 +98,7 @@ class Category(models.Model):
 
 
 class SubCategory(models.Model):
-    sub_category_name = models.CharField(required=True, max_length=100)
+    sub_category_name = models.CharField(max_length=100)
 
     def __unicode__(self):
         return u'sub_category_id: {} ____ sub_category_name: {}'\

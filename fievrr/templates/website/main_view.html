@@ -34,16 +34,16 @@
 
 
 <div class="container" id="landing-container">
-    {%for list_item in list_items %}
+    {%for gig in gigs %}
     <div class="col-md-4">
         <div class="container">
             <div class="card-individual">
                 <div class="card-image">
                     <div class="image-container">
-                        <a href="/detail-view/?list_item_id={{list_item.id}}"><img src="{{list_item.img}}"></a>
+                        <a href="/detail-view/?gig_id={{gig.id}}"><img src="{{gig.img}}"></a>
                     </div>
                     <div class="info-contents">
-                        <p>{{list_item.name}}</p>
+                        <p>{{gig.title}}</p>
                     </div>
                 </div>
             </div>
