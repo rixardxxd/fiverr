@@ -3,6 +3,8 @@
 from django.shortcuts import render_to_response, render, HttpResponseRedirect, redirect
 from django.template import RequestContext
 
+from website.models import Gig
+
 def main_view(request):
     #mock the data right now
     gigs = list()
@@ -32,4 +34,11 @@ def main_view(request):
     gigs.append(gig4)
     gigs.append(gig5)
     context_dict = {'gigs':gigs}
+    return render_to_response('website/main.html',RequestContext(request, context_dict))
+
+
+def gig_view(request):
+    gig_id = request.GET.get("gig_id")
+    gig = Gig.objects.get(pk=gig_id)
+    context_dict = {'gig' : gig}
     return render_to_response('website/main.html',RequestContext(request, context_dict))
