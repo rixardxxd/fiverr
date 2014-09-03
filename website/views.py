@@ -32,4 +32,4 @@ def main_view(request):
     item_list.append(item4)
     item_list.append(item5)
     context_dict = {'list_items':item_list}
-    return render_to_response('website/main.html',RequestContext(request, context_dict))
+    return render_to_response('website/main_view.html',RequestContext(request, context_dict))
