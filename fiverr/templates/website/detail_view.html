@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block meta %}
+<title>商品详情</title>
+{% endblock %}
+
+{% block head %}
+<link href="{{ STATIC_URL}}css/detail_view.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="container top-container">
+
+    <div class="row">
+        <h1>{{ list_item.name }}</h1>
+        <p>{{ list_item.house_number }}&nbsp{{ list_item.street }},{{ list_item.city }}, {{ list_item.country }}, {{ list_item.zip_code }}</p>
+    </div>
+    <div class="col-md-8 col-md-offset-0" id="left-column-box">
+
+
+        <div class="image-container">
+            <img src="{{list_item.img.url}}" alt={{list_item.img.url}} style="width: 100%;">
+        </div>
+
+        <br>
+
+        <div>
+            <h3>商铺描述</h3>
+        </div>
+        <div>
+            <p>{{ list_item.desc }}</p>
+        </div>
+    </div>
+
+    <div class="col-md-4 col-md-offset-0" id="right-column-box">
+        <h3>价格</h3>
+
+        <h2 class="price">${{ list_item.price }}</h2>
+
+        <h3>面积</h3>
+
+        <p>{{ list_item.size }} square ft</p>
+
+        <h3>联系方式</h3>
+
+        <p>{{ list_item.contact_info }}</p>
+
+
+        <h3>地址</h3>
+
+        <p>{{ list_item.house_number }}&nbsp{{ list_item.street }}</p>
+
+        <p>{{ list_item.city }}, {{ list_item.country }}, {{ list_item.zip_code }}</p>
+
+        <button  type="button" class="btn btn-info">联系店主</button>
+
+    </div>
+</div>
+
+
+{% endblock %}
