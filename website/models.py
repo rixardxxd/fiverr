@@ -24,7 +24,7 @@ class EmailOrUsernameModelBackend(object):
 
 
 class Gig(models.Model):
-
+    title = models.CharField(required=True, max_length=500)
     seller = models.ForeignKey(User)
     rating_avg = models.FloatField(default=0.0)
     rating_count = models.IntegerField(default=0)
