@@ -32,4 +32,4 @@ def main_view(request):
     gigs.append(gig4)
     gigs.append(gig5)
     context_dict = {'gigs':gigs}
-    return render_to_response('website/main.html',RequestContext(request, context_dict))
+    return render_to_response('website/main_view.html',RequestContext(request, context_dict))
