@@ -27,7 +27,11 @@ def main_view(request):
 
 
 def gig_view(request, gigid):
-    gig = Gig.objects.select_related('category').select_related('sub_category').get(id=gigid)
+    try:
+        #first join sub_category and then join category
+        gig = Gig.objects.select_related('sub_category__category').get(id=gigid)
+    except:
+        raise Http404
     if gig is not None:
         context_dict = {'gig': gig}
         return render_to_response('website/gig_view.html', RequestContext(request, context_dict))

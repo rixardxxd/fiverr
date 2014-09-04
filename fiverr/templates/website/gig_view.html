@@ -11,13 +11,15 @@
 {% block content %}
 <div class="container top-container">
 
-    <div class="row">
-        <div class="col-md-8 col-md-offset-0">
-            <h1>{{ gig.name }}</h1>
+    <div class="row row-centered">
+        <div class="col-md-8 col-md-offset-0 col-centered">
+            <div class="container">
+            <h1>{{ gig.title }}</h1>
 
-            <p>IN {{ gig.category.name }}/{{ gig.subcategory.name }}</p>
+            <p>IN {{ gig.sub_category.sub_category_name }}/ {{ gig.sub_category.category.category_name }}</p>
+                </div>
         </div>
-        <div class="col-md-4 col-md-offset-8">
+        <div class="col-md-4 col-md-offset-8 col-centered">
             <button class="btn btn-info btn-lg">购买</button>
         </div>
     </div>
