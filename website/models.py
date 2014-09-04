@@ -29,15 +29,14 @@ class Gig(models.Model):
     rating_avg = models.FloatField(default=0.0)
     rating_count = models.IntegerField(default=0)
     description = models.CharField(max_length=5000)
-    category = models.ForeignKey('Category')
     sub_category = models.ForeignKey('SubCategory')
-    tag = models.ManyToManyField('Tag')
+    tags = models.ManyToManyField('Tag')
     duration = models.IntegerField(default=0)
     instruction = models.CharField(blank=True, max_length=5000)
 
     def __unicode__(self):
-        return u'gig_id: {} ____ seller: {} ____ rating_avg: {} ____ rating_count: {} ____ category: {} ____ sub_category: {} ____ tag: {} ____ duration: {}'\
-            .format(self.id, self.seller, self.rating_avg, self.rating_count, self.category, self.sub_category, self.tag, self.duration)
+        return u'gig_id: {} ____ title: {} ____ seller: {} ____ rating_avg: {} ____ rating_count: {} ____ sub_category: {} ____ tags: {} ____ duration: {}'\
+            .format(self.id, self.title, self.seller, self.rating_avg, self.rating_count, self.sub_category, self.tags, self.duration)
 
 
 class Order(models.Model):
@@ -99,10 +98,11 @@ class Category(models.Model):
 
 class SubCategory(models.Model):
     sub_category_name = models.CharField(max_length=100)
+    category = models.ForeignKey('Category')
 
     def __unicode__(self):
-        return u'sub_category_id: {} ____ sub_category_name: {}'\
-            .format(self.id, self.sub_category_name)
+        return u'sub_category_id: {} ____ sub_category_name: {} ____ category: {}'\
+            .format(self.id, self.sub_category_name, self.category)
 
 
 class Image(models.Model):

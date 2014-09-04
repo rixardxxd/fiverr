@@ -6,6 +6,8 @@ from models import Gig
 from django.http import Http404
 
 
+from website.models import Gig
+
 def main_view(request):
     # mock the data right now
     gigs = list()
@@ -43,10 +45,11 @@ def main_view(request):
     return render_to_response('website/main_view.html', RequestContext(request, context_dict))
 
 
-def detail_view(request, gigid):
+def gig_view(request, gigid):
     gig = Gig.objects.select_related('category').select_related('sub_category').get(id=gigid)
     if gig is not None:
         context_dict = {'gig': gig}
-        return render_to_response('website/detail_view.html', RequestContext(request, context_dict))
+        return render_to_response('website/gig_view.html', RequestContext(request, context_dict))
     else:
         raise Http404
+

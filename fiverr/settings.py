@@ -33,9 +33,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'fievrr.urls'
+ROOT_URLCONF = 'fiverr.urls'
 
-WSGI_APPLICATION = 'fievrr.wsgi.application'
+WSGI_APPLICATION = 'fiverr.wsgi.application'
 
 
 # Database
@@ -44,8 +44,8 @@ WSGI_APPLICATION = 'fievrr.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'fievrr',
-        'USER': 'fievrr_user',
+        'NAME': 'fiverr',
+        'USER': 'fiverr_user',
         'PASSWORD': '',
         'HOST': 'localhost',  # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
         'PORT': '5432',
@@ -85,10 +85,10 @@ STATIC_URL = '/static/'
 STATIC_ROOT = 'staticfiles'
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "fievrr/static"),
+    os.path.join(BASE_DIR, "fiverr/static"),
 )
 TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, 'fievrr/templates/'),
+    os.path.join(BASE_DIR, 'fiverr/templates/'),
 )
 
 LOGGING = {
