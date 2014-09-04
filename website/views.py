@@ -3,14 +3,16 @@
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.http import Http404
-from website.models import Gig
+from website.models import Gig, Image
 
 
 def main_view(request):
-    gigs = Gig.objects.select_related('Image').all()
-    gigs = Gig.objects.select_related('Image').all()
+    gigs = Gig.objects.all()
+    for gig in gigs:
+        img_list = list(gig.image_set.all())
+        if len(img_list) > 0:
+            gig.first_img = img_list[0]
 
-    print gigs
     gig_list_2d = list()
     print len(gigs)
     print range(len(gigs))
