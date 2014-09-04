@@ -5,44 +5,37 @@
 {% endblock %}
 
 {% block head %}
-<link href="{{ STATIC_URL}}css/detail_view.css" rel="stylesheet">
+<link href="{{ STATIC_URL}}css/gig_view.css" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
 <div class="container top-container">
 
-    <div class="row row-centered">
-        <div class="col-md-8 col-md-offset-0 col-centered">
-            <div class="container">
-            <h1>{{ gig.title }}</h1>
+    <div class="row">
+        <div class="col-md-8">
+            <h1 class="top-alignment">{{ gig.title }}</h1>
 
             <p>IN {{ gig.sub_category.sub_category_name }}/ {{ gig.sub_category.category.category_name }}</p>
-                </div>
         </div>
-        <div class="col-md-4 col-md-offset-8 col-centered">
-            <button class="btn btn-info btn-lg">购买</button>
+        <div class="col-md-4">
+            <button class="btn btn-info btn-lg top-alignment">购买</button>
         </div>
     </div>
     <div class="row">
         <div class="col-md-8 col-md-offset-0" id="left-column-box">
 
 
-            <div class="image-container">
-                <img src="{{list_item.img.url}}" alt={{list_item.img.url}} style="width: 100%;">
+            <div class="image-container top-alignment">
+                <img src="/static/img/img1.jpeg" alt="/static/img/img1.jpeg">
             </div>
 
-            <br>
-
             <div>
-                <h3>商铺描述</h3>
-            </div>
-            <div>
-                <p>{{ list_item.desc }}</p>
+                <p>{{ gig.instruction }}</p>
             </div>
         </div>
 
-        <div class="col-md-4 col-md-offset-0" id="right-column-box">
-            <h3>价格</h3>
+        <div class="col-md-4" id="right-column-box">
+            <h3 class="top-alignment">价格</h3>
 
             <h2 class="price">${{ list_item.price }}</h2>
 

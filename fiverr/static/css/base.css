@@ -26,6 +26,14 @@ body {
     /*-webkit-font-smoothing: antialiased;*/
 }
 
+.top-container {
+    margin-top: 20px;
+}
+
+.top-alignment {
+    margin-top: 20px;
+}
+
 form.auth input[type=text], form.auth input[type=password], form.auth input[type=email] {
     display: block;
     width: 100%;
@@ -146,3 +154,15 @@ ul#navbar-right-item {
     margin-right: 50px;
 }
 
+/* centered columns styles */
+.row-centered {
+    text-align:center;
+}
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
+}
