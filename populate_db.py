@@ -48,25 +48,25 @@ def populate():
 
 
 def add_tag(tag_content):
-    tag = Tag.objects.get_or_create(tag_content=tag_content)
+    tag, created = Tag.objects.get_or_create(tag_content=tag_content)
     print tag
     return tag
 
 
 def add_sub_category(sub_cat, cat):
-    sub_category = SubCategory.objects.get_or_create(sub_category_name=sub_cat,
+    sub_category, created = SubCategory.objects.get_or_create(sub_category_name=sub_cat,
                                                      category=cat)
     print sub_category
     return sub_category
 
 
 def add_category(cat):
-    category = Category.objects.get_or_create(category_name=cat)
+    category, created = Category.objects.get_or_create(category_name=cat)
     print category
     return category
 
 def add_gig(title, seller, rating_avg, rating_count, desc, sub_cat, duration, instr):
-    gig = Gig.objects.get_or_create(title=title,
+    gig, created = Gig.objects.get_or_create(title=title,
                                     seller=seller,
                                     rating_avg=rating_avg,
                                     rating_count=rating_count,
@@ -79,9 +79,11 @@ def add_gig(title, seller, rating_avg, rating_count, desc, sub_cat, duration, in
 
 
 def add_user(username, email, password):
-    user = User.objects.create_user(username, email, password)
-    print user
-    return user
+    try:
+        new_user = User.objects.create_user(username, email, password)
+    except IntegrityError:
+        return User.objects.get(username=username, email=email)
+    return new_user
 
 
 # Start execution here!
@@ -90,5 +92,6 @@ if __name__ == '__main__':
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'fiverr.settings')
     from website.models import *
     from django.contrib.auth.models import User
+    from django.db.utils import IntegrityError
     populate()
 
