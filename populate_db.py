@@ -46,6 +46,11 @@ def populate():
     gig_music.tags.add(tag_cool, tag_useful)
     gig_car.tags.add(tag_cool)
 
+    print "/////////////////////////"
+    img_resume = add_image(gig_resume, "/static/img/img1.jpeg")
+    print "/////////////////////////"
+    img_resume.save()
+
 
 def add_tag(tag_content):
     tag, created = Tag.objects.get_or_create(tag_content=tag_content)
@@ -64,6 +69,14 @@ def add_category(cat):
     category, created = Category.objects.get_or_create(category_name=cat)
     print category
     return category
+
+
+def add_image(gig, img_url):
+    img, created = Image.objects.get_or_create(gig=gig)
+    img.image = img_url
+    print img
+    return img
+
 
 def add_gig(title, seller, rating_avg, rating_count, desc, sub_cat, duration, instr):
     gig, created = Gig.objects.get_or_create(title=title,

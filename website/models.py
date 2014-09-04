@@ -106,10 +106,11 @@ class SubCategory(models.Model):
 
 class Image(models.Model):
     gig = models.ForeignKey(Gig)
+    image = models.ImageField(upload_to='uploadedimg')
 
     def __unicode__(self):
-        return u'image_id: {} ____ gig: {}'\
-            .format(self.id, self.gig)
+        return u'image_id: {} ____ gig: {} ____ image: {}'\
+            .format(self.id, self.gig, self.image)
 
 
 

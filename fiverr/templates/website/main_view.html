@@ -33,14 +33,17 @@
 </div>
 
 
+
+
 <div class="container" id="landing-container">
-    {%for gig in gigs %}
-    <div class="col-md-4">
-        <div class="container">
+    {%for gig_list in gig_list_2d %}
+    <div class="row-fluid list-container">
+        {%for gig in gig_list %}
+        <div class="col-md-4">
             <div class="card-individual">
                 <div class="card-image">
                     <div class="image-container">
-                        <a href="/gig-view/{{gig.id}}"><img src="{{gig.img}}"></a>
+                        <a href="/gig-view/{{gig.id}}"><img src="{{gig.image}}"></a>
                     </div>
                     <div class="info-contents">
                         <p>{{gig.title}}</p>
@@ -48,9 +51,11 @@
                 </div>
             </div>
         </div>
+        {% endfor %}
     </div>
     {% endfor %}
 </div>
+
 
 
 {% endblock %}
