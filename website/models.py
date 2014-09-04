@@ -38,7 +38,6 @@ class Gig(models.Model):
         return u'gig_id: {} ____ title: {} ____ seller: {} ____ rating_avg: {} ____ rating_count: {} ____ sub_category: {} ____ tags: {} ____ duration: {}'\
             .format(self.id, self.title, self.seller, self.rating_avg, self.rating_count, self.sub_category, self.tags, self.duration)
 
-
 class Order(models.Model):
     buyer = models.ForeignKey(User)
     gig = models.ForeignKey(Gig)
