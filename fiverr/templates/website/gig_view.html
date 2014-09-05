@@ -37,22 +37,11 @@
         <div class="col-md-4" id="right-column-box">
             <h3 class="top-alignment">价格</h3>
 
-            <h2 class="price">${{ list_item.price }}</h2>
+            <h2 class="price">${{ gig.price }}</h2>
 
-            <h3>面积</h3>
+            <h3>{{ gig.rating_count}}&nbsp买家给予评价</h3>
 
-            <p>{{ list_item.size }} square ft</p>
-
-            <h3>联系方式</h3>
-
-            <p>{{ list_item.contact_info }}</p>
-
-
-            <h3>地址</h3>
-
-            <p>{{ list_item.house_number }}&nbsp{{ list_item.street }}</p>
-
-            <p>{{ list_item.city }}, {{ list_item.country }}, {{ list_item.zip_code }}</p>
+            <h2>{{ gig.rating_avg }} </h2>
 
             <button type="button" class="btn btn-info">联系店主</button>
 
