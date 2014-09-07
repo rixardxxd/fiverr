@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import User
+from djangoratings.fields import RatingField
 
 
 class EmailOrUsernameModelBackend(object):
@@ -26,8 +27,7 @@ class EmailOrUsernameModelBackend(object):
 class Gig(models.Model):
     title = models.CharField(max_length=500)
     seller = models.ForeignKey(User)
-    rating_avg = models.FloatField(default=0.0)
-    rating_count = models.IntegerField(default=0)
+    rating = RatingField(range=5)
     description = models.CharField(max_length=5000)
     sub_category = models.ForeignKey('SubCategory')
     tags = models.ManyToManyField('Tag')
@@ -35,8 +35,8 @@ class Gig(models.Model):
     instruction = models.CharField(blank=True, max_length=5000)
 
     def __unicode__(self):
-        return u'gig_id: {} ____ title: {} ____ seller: {} ____ rating_avg: {} ____ rating_count: {} ____ sub_category: {} ____ tags: {} ____ duration: {}'\
-            .format(self.id, self.title, self.seller, self.rating_avg, self.rating_count, self.sub_category, self.tags, self.duration)
+        return u'gig_id: {} ____ title: {} ____ seller: {} ____ rating_scores: {} ____ rating_votes: {} ____ sub_category: {} ____ tags: {} ____ duration: {}'\
+            .format(self.id, self.title, self.seller, self.rating_score, self.rating_votes, self.sub_category, self.tags, self.duration)
 
 class Order(models.Model):
     buyer = models.ForeignKey(User)

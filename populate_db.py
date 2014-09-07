@@ -33,11 +33,11 @@ def populate():
     tag_useful = add_tag("very useful")
     tag_useful.save()
 
-    gig_resume = add_gig("Revise Resume", john, 4.5, 2, "Good John can revise resume", sub_cat_resume, 2, "")
+    gig_resume = add_gig("Revise Resume", john, "Good John can revise resume", sub_cat_resume, 2, "这是砸发达阿三范德萨发生打法是否")
     gig_resume.save()
-    gig_music = add_gig("Compose songs", david, 5, 1, "David will make excellent music", sub_cat_music, 10, "Please upload the basic songs")
+    gig_music = add_gig("Compose songs", david, "David will make excellent music", sub_cat_music, 10, "Please upload the basic songs")
     gig_music.save()
-    gig_car = add_gig("Good car!", mike, 0, 0, "Mike has a good car to sell", sub_cat_car, 5, "Got a good car")
+    gig_car = add_gig("Good car!", mike, "Mike has a good car to sell", sub_cat_car, 5, "Got a good car")
     gig_car.save()
 
 
@@ -45,6 +45,16 @@ def populate():
     gig_resume.tags.add(tag_resume, tag_useful)
     gig_music.tags.add(tag_cool, tag_useful)
     gig_car.tags.add(tag_cool)
+
+    #add ratings for gig
+    gig_resume.rating.add(score=5,user=john,ip_address='127.0.0.1',order_id='1')
+    gig_resume.rating.add(score=4,user=david,ip_address='127.0.0.1',order_id='1')
+    gig_resume.rating.add(score=3,user=mike,ip_address='127.0.0.1',order_id='1')
+    gig_resume.rating.add(score=2,user=mike,ip_address='127.0.0.1',order_id='2')
+
+    gig_music.rating.add(score=2,user=mike,ip_address='127.0.0.1',order_id='3')
+
+    gig_car.rating.add(score=3,user=mike,ip_address='127.0.0.1',order_id='4')
 
     print "/////////////////////////"
     img_resume = add_image(gig_resume, "/static/img/img1.jpeg")
@@ -78,11 +88,11 @@ def add_image(gig, img_url):
     return img
 
 
-def add_gig(title, seller, rating_avg, rating_count, desc, sub_cat, duration, instr):
+def add_gig(title, seller, desc, sub_cat, duration, instr):
     gig, created = Gig.objects.get_or_create(title=title,
                                     seller=seller,
-                                    rating_avg=rating_avg,
-                                    rating_count=rating_count,
+                                    rating_score=0,
+                                    rating_votes=0,
                                     description=desc,
                                     sub_category=sub_cat,
                                     duration=duration,

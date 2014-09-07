@@ -23,6 +23,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'website',
     'south',
+    'djangoratings'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -124,3 +125,5 @@ LOGGING = {
             },
         }
     }
+
+RATINGS_VOTES_PER_IP = 1000
