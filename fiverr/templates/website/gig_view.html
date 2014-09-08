@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+{% load threadedcomments_tags %}
+
 
 {% block meta %}
 <title>商品详情</title>
@@ -46,6 +48,12 @@
             <button type="button" class="btn btn-info">联系店主</button>
 
         </div>
+    </div>
+    <div class="row">
+        <h2>Comments for {{ gig.title }}:</h2>
+
+        {% render_comment_list for gig %}
+        {% render_comment_form for gig %}
     </div>
 </div>
 

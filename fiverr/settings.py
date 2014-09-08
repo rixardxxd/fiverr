@@ -23,7 +23,10 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'website',
     'south',
-    'djangoratings'
+    'djangoratings',
+    'threadedcomments',
+    'django.contrib.comments',
+    'django.contrib.sites'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -127,3 +130,7 @@ LOGGING = {
     }
 
 RATINGS_VOTES_PER_IP = 1000
+
+COMMENTS_APP = 'threadedcomments'
+
+SITE_ID = 1
