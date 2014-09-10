@@ -40,3 +40,11 @@ def gig_view(request, gigid):
     else:
         raise Http404
 
+def search_view(request):
+    context_dict = {}
+    return render_to_response('website/search_view.html', RequestContext(request, context_dict))
+
+def order_complete_view(request):
+    gig = Gig.objects.get(id=1)
+    context_dict = {'gig':gig}
+    return render_to_response('website/order_complete_view.html', RequestContext(request, context_dict))

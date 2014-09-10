@@ -35,18 +35,30 @@ class Gig(models.Model):
     instruction = models.CharField(blank=True, max_length=5000)
 
     def __unicode__(self):
-        return u'gig_id: {} ____ title: {} ____ seller: {} ____ rating_scores: {} ____ rating_votes: {} ____ sub_category: {} ____ tags: {} ____ duration: {}'\
-            .format(self.id, self.title, self.seller, self.rating_score, self.rating_votes, self.sub_category, self.tags, self.duration)
+        return u'gig_id: {} ____ title: {} ____ seller: {} ____ rating_scores: {} ____ rating_votes: {} ____ sub_category: {} ____ tags: {} ____ duration: {}' \
+            .format(self.id, self.title, self.seller, self.rating_score, self.rating_votes, self.sub_category,
+                    self.tags, self.duration)
+
 
 class Order(models.Model):
+    status_paid = 'paid'
+    status_started = 'started'
+    status_overdue = 'overdue'
+    status_delivered = 'delivered'
+    STATUS = {
+        (status_paid, 'paid'),
+        (status_started, 'started'),
+        (status_overdue, 'overdue'),
+        (status_delivered, 'delivered')
+    }
     buyer = models.ForeignKey(User)
     gig = models.ForeignKey(Gig)
-    status = models.CharField(max_length=50)
+    status = models.CharField(max_length=20, choices=STATUS)
     purchase_ts = models.DateTimeField(auto_now_add=True)
     close_ts = models.DateTimeField();
 
     def __unicode__(self):
-        return u'order_id: {} ____ buyer: {} ____ gig: {} ____ status: {} ____ purchase_ts: {} ____ close_ts: {}'\
+        return u'order_id: {} ____ buyer: {} ____ gig: {} ____ status: {} ____ purchase_ts: {} ____ close_ts: {}' \
             .format(self.id, self.buyer, self.gig, self.status, self.purchase_ts, self.close_ts)
 
 
@@ -55,7 +67,7 @@ class Payment(models.Model):
     payment_ts = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):
-        return u'payment_id: {} ____ order: {} ____ payment_ts: {}'\
+        return u'payment_id: {} ____ order: {} ____ payment_ts: {}' \
             .format(self.id, self.order, self.payment_ts)
 
 
@@ -64,18 +76,19 @@ class Message(models.Model):
     message_content = models.CharField(max_length=5000);
 
     def __unicode__(self):
-        return u'message_id: {} ____ order: {} ____ message_content: {}'\
+        return u'message_id: {} ____ order: {} ____ message_content: {}' \
             .format(self.id, self.order, self.message_content)
 
 
 class Rating(models.Model):
     order = models.OneToOneField('Order')
     rating = models.IntegerField(default=0)
-    comment = models.CharField(blank=True, max_length=5000);
-    rating_ts = models.DateTimeField(auto_now_add=True);
+    comment = models.CharField(blank=True, max_length=5000)
+    rating_ts = models.DateTimeField(auto_now_add=True)
+    gig = models.ForeignKey(Gig)
 
     def __unicode__(self):
-        return u'rating_id: {} ____ order: {} ____ rating: {} ____ comment: {} ____ rating_ts: {}'\
+        return u'rating_id: {} ____ order: {} ____ rating: {} ____ comment: {} ____ rating_ts: {}' \
             .format(self.id, self.order, self.rating, self.comment, self.rating_ts)
 
 
@@ -83,7 +96,7 @@ class Tag(models.Model):
     tag_content = models.CharField(max_length=100)
 
     def __unicode__(self):
-        return u'tag_id: {} ____ tag_content: {}'\
+        return u'tag_id: {} ____ tag_content: {}' \
             .format(self.id, self.tag_content)
 
 
@@ -91,7 +104,7 @@ class Category(models.Model):
     category_name = models.CharField(max_length=100)
 
     def __unicode__(self):
-        return u'category_id: {} ____ category_name: {}'\
+        return u'category_id: {} ____ category_name: {}' \
             .format(self.id, self.category_name)
 
 
@@ -100,7 +113,7 @@ class SubCategory(models.Model):
     category = models.ForeignKey('Category')
 
     def __unicode__(self):
-        return u'sub_category_id: {} ____ sub_category_name: {} ____ category: {}'\
+        return u'sub_category_id: {} ____ sub_category_name: {} ____ category: {}' \
             .format(self.id, self.sub_category_name, self.category)
 
 
@@ -109,7 +122,7 @@ class Image(models.Model):
     image = models.ImageField(upload_to='uploadedimg')
 
     def __unicode__(self):
-        return u'image_id: {} ____ gig: {} ____ image: {}'\
+        return u'image_id: {} ____ gig: {} ____ image: {}' \
             .format(self.id, self.gig, self.image)
 
 

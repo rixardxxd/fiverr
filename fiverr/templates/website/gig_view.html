@@ -8,6 +8,9 @@
 
 {% block head %}
 <link href="{{ STATIC_URL}}css/gig_view.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}fluent_comments/css/ajaxcomments.css"/>
+<script type="text/javascript" src="{{ STATIC_URL }}fluent_comments/js/ajaxcomments.js"></script>
+
 {% endblock %}
 
 {% block content %}
@@ -49,12 +52,33 @@
 
         </div>
     </div>
-    <div class="row">
-        <h2>Comments for {{ gig.title }}:</h2>
 
-        {% render_comment_list for gig %}
-        {% render_comment_form for gig %}
+    <div class="row">
+        <div class="col-md-8">
+
+            <ul id="comments">
+                {% get_comment_list for gig as comment_list %}
+                {% for comment in comment_list %}
+                <li class="cmmnt">
+                    <div class="avatar"><a href="javascript:void(0);"><img src="/static/img/default-user-profile.jpeg" alt="DarkCubes photo avatar"></a>
+                    </div>
+                    <div class="cmmnt-content">
+                        <header><a href="javascript:void(0);" class="userlink">{{ comment.user_name }}</a> - <span class="pubdate">posted {{ comment.submit_date }}</span>
+                        </header>
+                        <p>{{ comment.comment }}</p>
+                    </div>
+                </li>
+
+                {% endfor %}
+            </ul>
+        </div>
+
+
+        <div class="col-md-4">
+            <button class="btn btn-info btn-lg top-alignment">购买</button>
+        </div>
     </div>
+</div>
 </div>
 
 

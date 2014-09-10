@@ -8,7 +8,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # Examples:
     url(r'^', include('website.urls',namespace="website")),
-    url(r'^comments/', include('django.contrib.comments.urls')),
+    url(r'^comments/', include('fluent_comments.urls')),
     url(r'^admin/', include(admin.site.urls)),
 
 )

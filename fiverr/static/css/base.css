@@ -1,9 +1,4 @@
 html {
-    background-image: -webkit-linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5));
-    background-image: -moz-linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5));
-    background-image: -o-linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5));
-    background-image: -ms-linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5));
-    background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5));
     -webkit-background-size: 100% 30%;
     -moz-background-size: 100% 30%;
     background-size: 100% 30%;
@@ -12,18 +7,14 @@ html {
 }
 
 body {
-    background: transparent;
-    background: -webkit-linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
-    background: -moz-linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
-    background: -ms-linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
-    background: -o-linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
-    background: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
-    background-color: #fff;
+    -background-color:#e8e8e8;
+    background-color:#fff;
     background-repeat: no-repeat;
     font-family: 'Raleway', serif;
     padding-top: 65px;
     /*font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;*/
     /*-webkit-font-smoothing: antialiased;*/
+
 }
 
 .top-container {

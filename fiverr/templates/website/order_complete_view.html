@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load threadedcomments_tags %}
+
+
+{% block meta %}
+<title>商品详情</title>
+{% endblock %}
+
+{% block head %}
+<link href="{{ STATIC_URL}}css/gig_view.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}fluent_comments/css/ajaxcomments.css"/>
+<script type="text/javascript" src="{{ STATIC_URL }}fluent_comments/js/ajaxcomments.js"></script>
+
+{% endblock %}
+
+{% block content %}
+<div class="container top-container">
+    <div class="row">
+        <h2>Comments for {{ gig.title }}:</h2>
+
+        {% render_comment_list for gig %}
+        {% render_comment_form for gig %}
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+

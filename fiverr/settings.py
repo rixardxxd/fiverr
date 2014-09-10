@@ -26,7 +26,9 @@ INSTALLED_APPS = (
     'djangoratings',
     'threadedcomments',
     'django.contrib.comments',
-    'django.contrib.sites'
+    'django.contrib.sites',
+    'fluent_comments',
+    'crispy_forms',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -131,6 +133,6 @@ LOGGING = {
 
 RATINGS_VOTES_PER_IP = 1000
 
-COMMENTS_APP = 'threadedcomments'
+COMMENTS_APP = 'fluent_comments'
 
 SITE_ID = 1
